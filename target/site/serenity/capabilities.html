@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Requirements</title>
+    <link rel="shortcut icon" href="favicon.ico">
+
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.4/media/jqueryui/dataTables.jqueryui.css" rel="Stylesheet"/>
+<link type="text/css" href="css/tables.css" rel="stylesheet" />
+
+<script type="text/javascript" src="datatables/1.10.4/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="datatables/1.10.4/media/jqueryui/dataTables.jqueryui.min.js"></script><!-- jQplot -->
+<!--[if IE]>
+<script language="javascript" type="text/javascript" src="excanvas/3/excanvas.compiled.js"></script>
+<![endif]--><link rel="stylesheet" type="text/css" href="jqplot/1.0.8/jquery.jqplot.min.css"/>
+<script type="text/javascript" src="jqplot/1.0.8/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="jqplot/1.0.8/plugins/jqplot.pieRenderer.min.js"></script>
+
+
+
+
+    <script class="code" type="text/javascript">$(document).ready(function () {
+        var plot1 = $.jqplot('coverage_pie_chart', [
+            [
+                ['Passing', 8],
+                ['Pending', 0],
+                ['Ignored', 0],
+                ['Failing', 0],
+                ['Errors',  0],
+                ['Compromised',  0],
+                ['Untested',  0],
+            ]
+        ], {
+            gridPadding: {top: 0, bottom: 38, left: 0, right: 0},
+            seriesColors: [
+                '#30cb23',
+                '#a2f2f2',
+                '#eeeadd',
+                '#f8001f',
+                '#fc6e1f',
+                'fuchsia',
+                'darkgrey'],
+            seriesDefaults: {
+                renderer: $.jqplot.PieRenderer,
+                trendline: {show: false},
+                rendererOptions: {padding: 8, showDataLabels: true}
+            },
+            legend: {
+                show: true,
+                placement: 'outside',
+                rendererOptions: {
+                    numberRows: 3
+                },
+                location: 's',
+                marginTop: '15px'
+            },
+            series: [
+                {label: '8 requirements tested successfully'},
+                {label: '0 requirements pending'},
+                {label: '0} requirements skipped'},
+                {label: '0} requirements with failures'},
+                {label: '0} requirements with errors'},
+                {label: '0} requirements compromised'},
+                {label: '0} requirements untested'},
+            ]
+        });
+        // Results table
+        $('#test-results-table').DataTable({
+            "order": [
+                [ 1, "asc" ]
+            ],
+            "pageLength": 100,
+            "lengthMenu": [ [50, 100, 200, -1] , [50, 100, 200, "All"] ]
+        });
+
+        // Results table
+        $('#req-results-table').DataTable({
+            "order": [
+                [ 1, "asc" ]
+            ],
+            "pageLength": 100,
+            "lengthMenu": [ [50, 100, 200, -1] , [50, 100, 200, "All"] ]
+        });
+
+        $('#examples-table').DataTable({
+            "order": [
+                [2, "asc"]
+            ],
+            "pageLength": 25
+        });
+        $("#requirements-tabs").tabs();
+        $("#test-tabs").tabs();
+    })
+    ;
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".read-more-link").click(function () {
+                $(this).nextAll("div.read-more-text").toggle();
+                var isrc = $(this).find("img").attr('src');
+                if (isrc == 'images/plus.png') {
+                    $(this).find("img").attr("src", function () {
+                        return "images/minus.png";
+                    });
+                } else {
+                    $(this).find("img").attr("src", function () {
+                        return "images/plus.png";
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="results-page">
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">Bestbuy Project</span>
+        </div>
+    </div>
+</div>
+
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+            <a href='index.html'>Home</a> > <a href="capabilities.html">Requirements</a>
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li >
+            <a href="index.html"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li class="active">
+            <a href="#"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 02-01-2023 16:11</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+    <div id="beforetable"></div>
+    <div id="results-dashboard">
+        <div class="middlb">
+            <div class="table">
+
+                <div id="requirements-summary">
+                    <div id="coverage_pie_chart"
+                         style="margin-top:10px; margin-left:10px; width:250px; height:250px;"></div>
+                    <div id="coverage_summary">
+                        <div>
+                            <h4>Requirements Overview</h4>
+                            <table class="summary-table">
+                                <head>
+                                    <tr>
+                                        <th>Requirement Type</th>
+                                        <th>Total</th>
+                                        <th>Pass&nbsp;<i class="icon-check"></i></th>
+                                        <th>Fail&nbsp;<i class="icon-thumbs-down"></i></th>
+                                        <th>Pending&nbsp;<i class="icon-calendar"></i></th>
+                                        <th>Ignored&nbsp;<i class="icon-ban-circle"></i></th>
+                                    </tr>
+                                </head>
+                                <body>
+
+                                <tr>
+                                    <td class="summary-leading-column"><a href="#test-results-table">Acceptance Criteria (tests)</a></td>
+                                    <td>8</td>
+                                    <td>8</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td></td>
+                                </tr>
+                                </body>
+                            </table>
+                        </div>
+
+
+
+
+
+<div>
+    <h4>Test Result Summary</h4>
+    <table class="summary-table">
+        <head>
+            <tr>
+                <th>Test Type</th>
+                <th>Total</th>
+                <th>Pass&nbsp;<i class="icon-check"/> </th>
+                <th>Fail&nbsp;<i class="icon-thumbs-down"/></th>
+                <th>Pending&nbsp;<i class="icon-calendar"/></th>
+                <th>Ignore/Skip&nbsp;<i class="icon-ban-circle"/></th>
+            </tr>
+        </head>
+        <body>
+        <tr>
+            <td class="summary-leading-column">Automated</td>
+            <td>8</td>
+            <td>8 (100%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Manual</td>
+            <td>0</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Total</td>
+            <td>8</td>
+            <td>8 (100%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Total Duration</td>
+                <td colspan="5">17 seconds</td>
+        </tr>
+        </body>
+    </table>
+</div>
+                    </div>
+                </div>
+                <div class="clr"></div>
+
+                <div id="requirements-tabs">
+<table>
+    <tr>
+        <td>
+            <div><h3>Acceptance Criteria</h3></div>
+            <div id="test_list_tests" class="table">
+                <div class="test-results">
+                    <table id="test-results-table">
+                        <thead>
+                        <tr>
+                            <th width="50" class="test-results-heading">&nbsp;</th>
+                            <th width="%" class="test-results-heading">Tests</th>
+                            <th width="70" class="test-results-heading">Steps</th>
+
+                            <th width="100" class="test-results-heading">Started</th>
+                            <th width="100" class="test-results-heading">Took<br>(secs)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="ac27a3a68fc570dd1555103dab082f2ba2b9c13d02f86b5fdf1e398e81bceed8.html" class="ellipsis"
+                                           title="This test will Create a new Product ">
+                                            This test will Create a new Product
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">2</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2023-01-02 16:11:14">16:11:14</td>
+
+                                <td class="SUCCESS-text">8.29</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="ab970bdb02061d120da37a9af11922618c96b5ba9c2994586761146060487a13.html" class="ellipsis"
+                                           title="This test will create a new Store ">
+                                            This test will create a new Store
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">2</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2023-01-02 16:11:14">16:11:14</td>
+
+                                <td class="SUCCESS-text">8.32</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="34a66b5d1f495fc066a26e5dc6b53993807af4a75591bcd5e8bbb88e80e82766.html" class="ellipsis"
+                                           title="This test will verify product was added ">
+                                            This test will verify product was added
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">2</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2023-01-02 16:11:23">16:11:23</td>
+
+                                <td class="SUCCESS-text">0.13</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="9314ae662abcbf61e1cd810cb08e3a0b83c0fefe1f957fbfc9b4311d92ccd2f1.html" class="ellipsis"
+                                           title="This test will verify Store is added ">
+                                            This test will verify Store is added
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">2</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2023-01-02 16:11:23">16:11:23</td>
+
+                                <td class="SUCCESS-text">0.13</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="fc7e7946e33ec5d4a0c540f458a27dbf92c78e74c929375374066494e3dd116e.html" class="ellipsis"
+                                           title="This test will Update the product information ">
+                                            This test will Update the product information
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">4</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2023-01-02 16:11:23">16:11:23</td>
+
+                                <td class="SUCCESS-text">0.15</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="8772b46e5bfe89453c06346c2d32c7de9022464f1fa76ee86f6a8a2529093f47.html" class="ellipsis"
+                                           title="This test will Update the stores information ">
+                                            This test will Update the stores information
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">4</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2023-01-02 16:11:23">16:11:23</td>
+
+                                <td class="SUCCESS-text">0.13</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="462daba74561348e8b8b2feed97806a2c1f795c8d6e376043c9941dbb3c6cadb.html" class="ellipsis"
+                                           title="This test will Delete product details ">
+                                            This test will Delete product details
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">2</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2023-01-02 16:11:23">16:11:23</td>
+
+                                <td class="SUCCESS-text">0.05</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="89bf3fbb2c5f76e802a9a7c0ab66eb09857e3200f1fd3ca6f7fba99f31b9deb3.html" class="ellipsis"
+                                           title="This test will Delete the stores by ID ">
+                                            This test will Delete the stores by ID
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">4</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2023-01-02 16:11:23">16:11:23</td>
+
+                                <td class="SUCCESS-text">0.08</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.5.1</span>
+</div>
+</body>
+</html>

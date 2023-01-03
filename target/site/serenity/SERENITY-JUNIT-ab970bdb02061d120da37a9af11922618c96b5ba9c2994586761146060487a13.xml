@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="com.bestbuy.crudtests.StoresCRUDTest" skipped="0" tests="4" time="8.12" timestamp="2023-01-03T20:23:56.932Z[Europe/London]"><testcase classname="com.bestbuy.crudtests.StoresCRUDTest" name="This test will create a new Store"/><testcase classname="com.bestbuy.crudtests.StoresCRUDTest" name="This test will verify Store is added"/><testcase classname="com.bestbuy.crudtests.StoresCRUDTest" name="This test will Update the stores information"/><testcase classname="com.bestbuy.crudtests.StoresCRUDTest" name="This test will Delete the stores by ID"><failure message="1 expectation failed.&#10;Expected status code &lt;404&gt; but was &lt;500&gt;.&#10;" type="java.lang.AssertionError">1 expectation failed.
+Expected status code &lt;404&gt; but was &lt;500&gt;.
+</failure><system-err>1 expectation failed.
+Expected status code &lt;404&gt; but was &lt;500&gt;.
+&#13;
+io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:636)&#13;
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:122)&#13;
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:130)&#13;
+io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:117)&#13;
+com.bestbuy.crudtests.StoresCRUDTest.test004(StoresCRUDTest.java:66)&#13;
+</system-err></testcase></testsuite>

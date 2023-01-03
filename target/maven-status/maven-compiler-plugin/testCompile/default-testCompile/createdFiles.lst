@@ -1,0 +1,4 @@
+com\bestbuy\crudtests\ProductsCRUDTest.class
+com\bestbuy\CucumberRunner.class
+com\bestbuy\testbase\TestBase.class
+com\bestbuy\crudtests\StoresCRUDTest.class
